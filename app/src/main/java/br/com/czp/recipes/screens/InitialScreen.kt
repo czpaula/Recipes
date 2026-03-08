@@ -30,11 +30,14 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import br.com.czp.recipes.R
+import br.com.czp.recipes.navigation.Destination
 import br.com.czp.recipes.ui.theme.RecipesTheme
 
 @Composable
-fun InitialScreen(){
+fun InitialScreen(navController: NavController){
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -77,19 +80,22 @@ fun InitialScreen(){
                         .padding(top = 8.dp, bottom = 16.dp)
                 )
                 Row {
-                    Button(
-                        onClick = {},
-                        colors = ButtonDefaults
-                            .buttonColors(
-                                containerColor = MaterialTheme.colorScheme.primary
+                        Button(
+                            onClick = {
+                                navController
+                                    .navigate(Destination.LoginScreen.route)
+                            },
+                            colors = ButtonDefaults
+                                .buttonColors(
+                                    containerColor = MaterialTheme.colorScheme.primary
+                                ),
+                            border = BorderStroke(
+                                width = 1.dp,
+                                color = MaterialTheme.colorScheme.tertiary
                             ),
-                        border = BorderStroke(
-                            width = 1.dp,
-                            color = MaterialTheme.colorScheme.tertiary
-                        ),
-                        modifier = Modifier
-                            .size(width = 128.dp, height = 48.dp)
-                    ) {
+                            modifier = Modifier
+                                .size(width = 128.dp, height = 48.dp)
+                        ) {
                         Text(
                             text = stringResource(R.string.button_login),
                             color = MaterialTheme.colorScheme.onPrimary,
@@ -99,7 +105,11 @@ fun InitialScreen(){
                     }
                     Spacer(modifier = Modifier.width(8.dp))
                     Button(
-                        onClick = {},
+                        onClick = {
+                            navController.navigate(
+                                Destination.SignupScreen.route
+                            )
+                        },
                         colors = ButtonDefaults
                             .buttonColors(
                                 containerColor = MaterialTheme.colorScheme.tertiary
@@ -135,7 +145,7 @@ fun InitialScreen(){
 )
 fun InitialScreenPreview(){
     RecipesTheme {
-        InitialScreen()
+        InitialScreen(rememberNavController())
     }
 
 }

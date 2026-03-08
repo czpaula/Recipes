@@ -14,7 +14,7 @@ android {
     defaultConfig {
         applicationId = "br.com.czp.recipes"
         minSdk = 28
-        targetSdk = 36
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0"
 
@@ -60,4 +60,7 @@ dependencies {
 
     //Mais icones
     implementation("androidx.compose.material:material-icons-extended-android:1.7.8")
+
+    // Navigstion Compose dependence
+    implementation(libs.androidx.navigation.compose)
 }
